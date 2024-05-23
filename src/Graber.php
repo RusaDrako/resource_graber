@@ -1,9 +1,9 @@
 <?php
 
-namespace RusaDrako\mp3_graber;
+namespace RusaDrako\resource_graber;
 
-use RusaDrako\mp3_graber\handler\_fac_handler;
-use RusaDrako\mp3_graber\upload\curl;
+use RusaDrako\resource_graber\handler\_fac_handler;
+use RusaDrako\resource_graber\upload\curl;
 
 /** Грабер */
 class Graber {

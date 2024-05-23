@@ -1,6 +1,6 @@
 <?php
 
-namespace RusaDrako\mp3_graber\upload;
+namespace RusaDrako\resource_graber\upload;
 
 abstract class _abs_upload implements _inf_upload {
 	/**  */

@@ -1,6 +1,6 @@
 <?php
 
-namespace RusaDrako\mp3_graber\upload;
+namespace RusaDrako\resource_graber\upload;
 
 class curl extends _abs_upload {
 	/** @var array Настройка curl */

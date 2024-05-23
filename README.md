@@ -1,21 +1,21 @@
-# RusaDrako\\site_graber
+# RusaDrako\\resource_graber
 
-[![Version](http://poser.pugx.org/rusadrako/site_graber/version)](https://packagist.org/packages/rusadrako/site_graber)
-[![Total Downloads](http://poser.pugx.org/rusadrako/site_graber/downloads)](https://packagist.org/packages/rusadrako/site_graber/stats)
-[![License](http://poser.pugx.org/rusadrako/site_graber/license)](./LICENSE)
+[![Version](http://poser.pugx.org/rusadrako/resource_graber/version)](https://packagist.org/packages/rusadrako/resource_graber)
+[![Total Downloads](http://poser.pugx.org/rusadrako/resource_graber/downloads)](https://packagist.org/packages/rusadrako/resource_graber/stats)
+[![License](http://poser.pugx.org/rusadrako/resource_graber/license)](./LICENSE)
 
 Автоматическое скачивание ресурсов с указанного сайта.
 
 ## Установка (composer)
 ```sh
-composer require 'rusadrako/site_graber'
+composer require 'rusadrako/resource_graber'
 ```
 
 ## Установка (manual)
 - Скачать и распоковать библиотеку.
 - Добавить в код инструкцию:
 ```php
-require_once('/site_graber/src/autoload.php')
+require_once('/resource_graber/src/autoload.php')
 ```
 
 ## Массив настроек хоста
@@ -53,7 +53,7 @@ array(
 
 ## Пример кода
 ```php
-use RusaDrako\mp3_graber\Graber;
+use RusaDrako\resource_graber\Graber;
 
 # Загрузка библиотеки
 require_once('../src/autoload.php');

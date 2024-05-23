@@ -1,5 +1,5 @@
 {
-    "name": "rusadrako/site_graber",
+    "name": "rusadrako/resource_graber",
     "description": "Автоматическое скачивание ресурсов с указанного сайта",
     "license": "MIT",
     "authors": [
@@ -14,7 +14,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "RusaDrako\\mp3_graber\\": "src"
+            "RusaDrako\\resource_graber\\": "src"
         },
         "files": [
             "src/autoload.php"

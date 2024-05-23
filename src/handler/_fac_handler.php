@@ -1,6 +1,6 @@
 <?php
 
-namespace RusaDrako\mp3_graber\handler;
+namespace RusaDrako\resource_graber\handler;
 
 class _fac_handler {
 	/** Подбираем обработчик в зависимости от хоста */

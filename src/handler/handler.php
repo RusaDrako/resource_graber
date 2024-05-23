@@ -1,6 +1,6 @@
 <?php
 
-namespace RusaDrako\mp3_graber\handler;
+namespace RusaDrako\resource_graber\handler;
 
 class handler implements _inf_handler {
 

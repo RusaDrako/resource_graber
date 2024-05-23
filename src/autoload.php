@@ -1,6 +1,6 @@
 <?php
 
-namespace RusaDrako\mp3_graber;
+namespace RusaDrako\resource_graber;
 
 require_once('Graber.php');
 

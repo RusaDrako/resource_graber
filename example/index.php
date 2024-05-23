@@ -1,6 +1,6 @@
 <pre><?php
 
-use RusaDrako\mp3_graber\Graber;
+use RusaDrako\resource_graber\Graber;
 
 # Загрузка библиотеки
 require_once('../src/autoload.php');

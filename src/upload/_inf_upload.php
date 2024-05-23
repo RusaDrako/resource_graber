@@ -1,6 +1,6 @@
 <?php
 
-namespace RusaDrako\mp3_graber\upload;
+namespace RusaDrako\resource_graber\upload;
 
 interface _inf_upload {
 	/**  */
