@@ -1,0 +1,23 @@
+{
+    "name": "rusadrako/site_graber",
+    "description": "Автоматическое скачивание ресурсов с указанного сайта",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Petukhov Leonid",
+            "email": "rusadrako@yandex.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "RusaDrako\\mp3_graber\\": "src"
+        },
+        "files": [
+            "src/autoload.php"
+        ]
+    }
+}
