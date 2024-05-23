@@ -11,15 +11,17 @@ class Graber {
 	protected $time_limit=600;
 	protected $host_settings=[];
 
+	/** Задаёт значение set_time_limit для одной итерации скачивания файлов */
 	public function setTimeLimit(int $time_sec){
 		$this->time_limit=$time_sec;
 	}
 
+	/** Задаёт настройки хостов, для обработки ссылок */
 	public function setHostSettings(array $array){
 		$this->host_settings=$array;
 	}
 
-
+	/** Выполняет полный цикл получения файлов со страницы */
 	public function execute($url, $folder){
 		echo PHP_EOL;
 		echo "Обработка ссылки: {$url}" . PHP_EOL;

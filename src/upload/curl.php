@@ -3,17 +3,19 @@
 namespace RusaDrako\resource_graber\upload;
 
 class curl extends _abs_upload {
+
 	/** @var array Настройка curl */
 	protected $curl_set=[
 		CURLOPT_RETURNTRANSFER   => TRUE,
 		CURLOPT_TIMEOUT          => 600,
 	];
 
+	/** Задаёт настройку для запроса curl */
 	public function setCurlSet($name, $value){
 		$this->curl_set[$name]=$value;
 	}
 
-	/**  */
+	/** Выполняет получение данных по ссылке */
 	public function grabeData(){
 		# Запускай curl
 		$curl = curl_init();

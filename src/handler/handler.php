@@ -8,21 +8,21 @@ class handler implements _inf_handler {
 	protected $handler=null;
 	protected $url_str_replace=null;
 
+	/**  */
 	public function __construct($set){
 		$this->regex=$set['regex']?:null;
 		$this->handler=$set['handler']?:null;
 		$this->url_str_replace=$set['url_str_replace']?:null;
 	}
 
-	/**  */
+	/** Получает массив ссылок из html */
 	public function getLinkArray($html){
 		$arr_result=[];
 
 		$result=null;
 
 		$result=$this->regex ? $this->useRegex($html) : $html;
-//var_dump($html);
-//exit;
+
 		if(!$result){return $arr_result;}
 
 		$func=$this->handler;
