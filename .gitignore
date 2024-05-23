@@ -1,0 +1,10 @@
+/.idea
+/.svn
+/.ftpconfig
+/.ftpignore
+/vendor
+/example/mp3
+/composer.lock
+/**/___*
+/**/___*.*
+/**/*.bat
