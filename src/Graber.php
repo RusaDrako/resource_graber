@@ -23,7 +23,6 @@ class Graber {
 
 	/** Выполняет полный цикл получения файлов со страницы */
 	public function execute($url, $folder){
-		echo PHP_EOL;
 		echo "Обработка ссылки: {$url}" . PHP_EOL;
 
 		$parse = parse_url($url);
@@ -40,7 +39,15 @@ class Graber {
 		# Получаем список ссылок для загрузки
 		$arr_link = $this->getLinkArray($host_setting['handler']?:[], $page->getData());
 
-		echo PHP_EOL;
+		if(!$arr_link){
+			echo "Список файлов пуст." . PHP_EOL;
+			return;
+		}
+
+		//for($i=0; $i<2; $i++){
+		//	array_shift($arr_link);
+		//}
+
 		echo "Список файлов:" . PHP_EOL;
 		var_export($arr_link);
 		echo PHP_EOL;
@@ -55,11 +62,12 @@ class Graber {
 			set_time_limit($this->time_limit);
 			$link=$v;
 
-			echo " - Загрузка файла: {$link}" . PHP_EOL;
+			$key=str_pad($k+1, $count_file_name, '0', STR_PAD_LEFT );
+
+			echo "{$key} - Загрузка файла: {$link}" . PHP_EOL;
 			# Загружаем файл
 			$file_data = $this->uploadFile($link, $host_setting['file']?:[]);
 
-			$key=str_pad($k+1, $count_file_name, '0', STR_PAD_LEFT );
 			$basename=basename($file_data->getFileName());
 
 			$file_name = $this->getNewFileName($host_setting['safe_file']?:[], $basename, $key);
@@ -69,8 +77,6 @@ class Graber {
 			file_put_contents($full_file_name, $file_data->getData());
 			echo "\tРазмер: " . strlen($file_data->getData()) . PHP_EOL;
 		}
-
-		echo PHP_EOL;
 	}
 
 	/** Загрузка файла */

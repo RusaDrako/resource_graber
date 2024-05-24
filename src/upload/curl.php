@@ -7,7 +7,7 @@ class curl extends _abs_upload {
 	/** @var array Настройка curl */
 	protected $curl_set=[
 		CURLOPT_RETURNTRANSFER   => TRUE,
-		CURLOPT_TIMEOUT          => 600,
+		CURLOPT_TIMEOUT          => 1200,
 	];
 
 	/** Задаёт настройку для запроса curl */
