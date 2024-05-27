@@ -28,7 +28,7 @@ class Graber {
 	}
 
 	/** Выполняет полный цикл получения файлов со страницы */
-	public function execute($url, $folder){
+	public function execute($url, $folder, $start_position=0){
 		echo "Обработка ссылки: {$url}" . PHP_EOL;
 
 		$parse = parse_url($url);
@@ -68,6 +68,11 @@ class Graber {
 			$key=str_pad($k+1, $count_file_name, '0', STR_PAD_LEFT );
 
 			log::call()->addLog("{$key} - Загрузка файла: {$link}");
+
+			if ($k<$start_position) {
+				log::call()->addLog("\tПропуск загрузки");
+				continue;
+			}
 
 			# Загружаем файл
 			$file_data = $this->uploadFile($link, $host_setting['file']?:[]);
