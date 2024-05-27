@@ -72,7 +72,7 @@ class Graber {
 
 			$key=str_pad($k+1, $count_file_name, '0', STR_PAD_LEFT );
 
-			log::call()->addLog("{$key} - Загрузка файла: {$link}");
+			log::call()->addLog("{$key} - Загрузка файла: {$link}", 1);
 
 			# Проверяем есть ли список позиций, которые надо загрузить, и входит ли файл в этот список
 			if($need_positions && !in_array(($k+1), $need_positions)) {

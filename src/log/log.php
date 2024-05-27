@@ -29,9 +29,10 @@ class log {
 	}
 
 	/**  */
-	public function addLog($data){
-		if(!$this->is_use) { return; }
-		echo date('Y-m-d H:i:s') . ' ' . $data . PHP_EOL;
+	public function addLog($data, $addTime=false){
+		if (!$this->is_use) { return; }
+		$time = $addTime ? date('Y-m-d H:i:s') . ': ' : '';
+		echo  $time . $data . PHP_EOL;
 	}
 
 	/**  */
