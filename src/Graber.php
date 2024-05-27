@@ -27,8 +27,13 @@ class Graber {
 		$this->host_settings=$value;
 	}
 
-	/** Выполняет полный цикл получения файлов со страницы */
-	public function execute($url, $folder, $position=0){
+	/** Выполняет полный цикл получения файлов со страницы
+	 * @param string $url Ссылка на страницу со списком ссылок на файлы
+	 * @param string $folder Путь к папке, куда сохраняются файлы
+	 * @param int $start_position Стартовая позиция списка для загрузки файлов
+	 * @param array $need_positions Массив позиций необходимых для загрузки
+	 */
+	public function execute(string $url, string $folder, int $start_position=0, array $need_positions=[]){
 		echo "Обработка ссылки: {$url}" . PHP_EOL;
 
 		$parse = parse_url($url);
@@ -69,16 +74,15 @@ class Graber {
 
 			log::call()->addLog("{$key} - Загрузка файла: {$link}");
 
-			if(is_array($position)){
-				if(!in_array(($k+1), $position)) {
-					log::call()->addLog("\tПропуск загрузки");
-					continue;
-				}
-			} else {
-				if(($k+1)<$position) {
-					log::call()->addLog("\tПропуск загрузки");
-					continue;
-				}
+			# Проверяем есть ли список позиций, которые надо загрузить, и входит ли файл в этот список
+			if($need_positions && !in_array(($k+1), $need_positions)) {
+				log::call()->addLog("\tПропуск загрузки");
+				continue;
+			}
+			# Проверяем стартовую позицию списка
+			if(($k+1) < $start_position) {
+				log::call()->addLog("\tПропуск загрузки");
+				continue;
 			}
 
 			# Загружаем файл
