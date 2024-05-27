@@ -3,6 +3,7 @@
 namespace RusaDrako\resource_graber;
 
 use RusaDrako\resource_graber\handler\_fac_handler;
+use RusaDrako\resource_graber\log\log;
 use RusaDrako\resource_graber\upload\curl;
 
 /** Грабер */
@@ -11,14 +12,19 @@ class Graber {
 	protected $time_limit=600;
 	protected $host_settings=[];
 
+	/** Задаёт режим логирования */
+	public function setLog(bool $value){
+		log::call()->isUse($value);
+	}
+
 	/** Задаёт значение set_time_limit для одной итерации скачивания файлов */
 	public function setTimeLimit(int $time_sec){
 		$this->time_limit=$time_sec;
 	}
 
 	/** Задаёт настройки хостов, для обработки ссылок */
-	public function setHostSettings(array $array){
-		$this->host_settings=$array;
+	public function setHostSettings(array $value){
+		$this->host_settings=$value;
 	}
 
 	/** Выполняет полный цикл получения файлов со страницы */
@@ -28,7 +34,7 @@ class Graber {
 		$parse = parse_url($url);
 
 		if(!array_key_exists($parse['host'], $this->host_settings)) {
-			echo "!!! Настройки для хоста {$parse['host']} отсутствуют" . PHP_EOL;
+			log::call()->addLog("!!! Настройки для хоста {$parse['host']} отсутствуют");
 			return;
 		}
 
@@ -40,16 +46,12 @@ class Graber {
 		$arr_link = $this->getLinkArray($host_setting['handler']?:[], $page->getData());
 
 		if(!$arr_link){
-			echo "Список файлов пуст." . PHP_EOL;
+			log::call()->addLog("Список файлов пуст.");
 			return;
 		}
 
-		//for($i=0; $i<2; $i++){
-		//	array_shift($arr_link);
-		//}
-
 		echo "Список файлов:" . PHP_EOL;
-		var_export($arr_link);
+		log::call()->addData($arr_link);
 		echo PHP_EOL;
 
 		# Создаём папку назначения
@@ -59,12 +61,14 @@ class Graber {
 
 		# Загружаем файлы по списку
 		foreach($arr_link as $k=>$v){
+
 			set_time_limit($this->time_limit);
 			$link=$v;
 
 			$key=str_pad($k+1, $count_file_name, '0', STR_PAD_LEFT );
 
-			echo "{$key} - Загрузка файла: {$link}" . PHP_EOL;
+			log::call()->addLog("{$key} - Загрузка файла: {$link}");
+
 			# Загружаем файл
 			$file_data = $this->uploadFile($link, $host_setting['file']?:[]);
 
@@ -73,9 +77,9 @@ class Graber {
 			$file_name = $this->getNewFileName($host_setting['safe_file']?:[], $basename, $key);
 
 			$full_file_name = $folder . $file_name;
-			echo "\tСохранение файла: {$full_file_name}" . PHP_EOL;
+			log::call()->addLog("\tСохранение файла: {$full_file_name}");
 			file_put_contents($full_file_name, $file_data->getData());
-			echo "\tРазмер: " . strlen($file_data->getData()) . PHP_EOL;
+			log::call()->addLog("\tРазмер: " . strlen($file_data->getData()));
 		}
 	}
 
@@ -93,7 +97,7 @@ class Graber {
 	/** Загрузка файла */
 	public static function createFolder(string $folder, $right=0777) {
 		if(!file_exists($folder)){
-			echo "Создание папки: {$folder}" . PHP_EOL;
+			log::call()->addLog("Создание папки: {$folder}");
 			mkdir($folder, $right, 1);
 		}
 	}
