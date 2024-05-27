@@ -34,7 +34,7 @@ class handler implements _inf_handler {
 				$arr_result[]=str_replace(array_keys($this->url_str_replace), $this->url_str_replace, $v);
 			}
 		} else {
-			$arr_result = $result;
+			$arr_result=$result;
 		}
 
 		return $arr_result;

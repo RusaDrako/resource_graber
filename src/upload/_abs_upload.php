@@ -9,7 +9,7 @@ abstract class _abs_upload implements _inf_upload {
 
 	/**  */
 	public function setData($data){
-		$this->data = $data;
+		$this->data=$data;
 		return $this;
 	}
 

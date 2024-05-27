@@ -36,19 +36,19 @@ class Graber {
 	public function execute(string $url, string $folder, int $start_position=0, array $need_positions=[]){
 		echo "Обработка ссылки: {$url}" . PHP_EOL;
 
-		$parse = parse_url($url);
+		$parse=parse_url($url);
 
 		if(!array_key_exists($parse['host'], $this->host_settings)) {
 			log::call()->addLog("!!! Настройки для хоста {$parse['host']} отсутствуют");
 			return;
 		}
 
-		$host_setting = $this->host_settings[$parse['host']];
+		$host_setting=$this->host_settings[$parse['host']];
 
 		# Получаем содержание страницы
-		$page = $this->uploadFile($url, $host_setting['page']["curl_set"]?:[]);
+		$page=$this->uploadFile($url, $host_setting['page']["curl_set"]?:[]);
 		# Получаем список ссылок для загрузки
-		$arr_link = $this->getLinkArray($host_setting['handler']?:[], $page->getData());
+		$arr_link=$this->getLinkArray($host_setting['handler']?:[], $page->getData());
 
 		if(!$arr_link){
 			log::call()->addLog("Список файлов пуст.");
@@ -86,13 +86,13 @@ class Graber {
 			}
 
 			# Загружаем файл
-			$file_data = $this->uploadFile($link, $host_setting['file']?:[]);
+			$file_data=$this->uploadFile($link, $host_setting['file']?:[]);
 
 			$basename=basename($file_data->getFileName());
 
-			$file_name = $this->getNewFileName($host_setting['safe_file']?:[], $basename, $key);
+			$file_name=$this->getNewFileName($host_setting['safe_file']?:[], $basename, $key);
 
-			$full_file_name = $folder . $file_name;
+			$full_file_name=$folder . $file_name;
 			log::call()->addLog("\tСохранение файла: {$full_file_name}");
 			file_put_contents($full_file_name, $file_data->getData());
 			log::call()->addLog("\tРазмер: " . strlen($file_data->getData()));
@@ -130,7 +130,7 @@ class Graber {
 		if(!$host_setting["use_key_for_file_name"]?:false){
 			return $basename;
 		}
-		$extension = pathinfo($basename, PATHINFO_EXTENSION);
+		$extension=pathinfo($basename, PATHINFO_EXTENSION);
 		return "{$key}.{$extension}";
 	}
 

@@ -26,7 +26,7 @@ array(
 		# Настройки для загрузки страницы
 		"page"=>array(
 			# Дополнительные настройки curl
-			"curl_set"=>array(CURLOPT_TIMEOUT => 300),
+			"curl_set"=>array(CURLOPT_TIMEOUT=>300),
 		),
 		# Настройки обработчика страницы
 		"handler"=>array(
@@ -35,12 +35,12 @@ array(
 			# Функция дополнительной обработки данных полученных регулярным выражением
 			"handler"=>function($data){ return array();},
 			# Замена символов в URL
-			'url_str_replace'=>array('\\' => ''),
+			'url_str_replace'=>array('\\'=>''),
 		),
 		# Настройки для загрузки файлов из списка
 		"file"=>array(
 			# Дополнительные настройки curl
-			"curl_set"=>array(CURLOPT_TIMEOUT => 300),
+			"curl_set"=>array(CURLOPT_TIMEOUT=>300),
 		),
 		# Сохранение загруженных файлов
 		"safe_file"=>array(
@@ -59,29 +59,29 @@ use RusaDrako\resource_graber\Graber;
 require_once('../src/autoload.php');
 
 # Обработчик массива url
-$func = function($data){
-	$result = [];
-	foreach($data as $k => $v){
-		$result[$k] = "https://www.google.com/{$v}";
+$func=function($data){
+	$result=[];
+	foreach($data as $k=>$v){
+		$result[$k]="https://www.google.com/{$v}";
 	}
 	return $result;
 };
 
 # Настройка обработки хоста
-$host_settings = array(
-	"www.google.com" => array(
-		"handler" => array(
-			"regex" => '/src="([^"]*)"/umi',
-			"handler" => $func,
+$host_settings=array(
+	"www.google.com"=>array(
+		"handler"=>array(
+			"regex"=>'/src="([^"]*)"/umi',
+			"handler"=>$func,
 		),
-		"safe_file" => array(
-			"use_key_for_file_name" => true,
+		"safe_file"=>array(
+			"use_key_for_file_name"=>true,
 		),
 	),
 );
 
 # Формирование объекта
-$graber = new Graber();
+$graber=new Graber();
 $graber->setTimeLimit(600);
 $graber->setHostSettings($host_settings);
 

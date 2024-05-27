@@ -2,13 +2,13 @@
 
 namespace RusaDrako\resource_graber\log;
 
-class log {
+class log{
 
 	/** Объект модели */
-	protected static $_object = null;
+	protected static $_object=null;
 
 	/** Объект модели */
-	protected $is_use = false;
+	protected $is_use=false;
 
 	/** Загрузка класса */
 	function __construct () {}
@@ -17,22 +17,22 @@ class log {
 	 * @return object Объект модели
 	 */
 	public static function call() {
-		if(null === self::$_object) {
-			self::$_object = new static();
+		if(null===self::$_object) {
+			self::$_object=new static();
 		}
 		return self::$_object;
 	}
 
 	/**  */
 	public function isUse($data){
-		$this->is_use = $data;
+		$this->is_use=$data;
 	}
 
 	/**  */
 	public function addLog($data, $addTime=false){
 		if (!$this->is_use) { return; }
-		$time = $addTime ? date('Y-m-d H:i:s') . ': ' : '';
-		echo  $time . $data . PHP_EOL;
+		$time=$addTime ? date('Y-m-d H:i:s') . ': ' : '';
+		echo $time . $data . PHP_EOL;
 	}
 
 	/**  */
