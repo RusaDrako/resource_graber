@@ -47,7 +47,6 @@ class curl extends _abs_upload {
 			log::call()->addLog("\tПеренаправление: {$new_url}");
 			$result = $this->grabeData($new_url)->getData();
 		}
-		echo PHP_EOL;
 		# Закрываем соединение
 		curl_close($curl);
 
