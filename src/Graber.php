@@ -34,6 +34,7 @@ class Graber {
 	 * @param array $need_positions Массив позиций необходимых для загрузки
 	 */
 	public function execute(string $url, string $folder, int $start_position=0, array $need_positions=[]){
+
 		echo "Обработка ссылки: {$url}" . PHP_EOL;
 
 		$parse=parse_url($url);
@@ -46,7 +47,7 @@ class Graber {
 		$host_setting=$this->host_settings[$parse['host']];
 
 		# Получаем содержание страницы
-		$page=$this->uploadFile($url, $host_setting['page']["curl_set"]?:[]);
+		$page=$this->uploadFile($url, $host_setting['page']['curl_set']?:[]);
 		# Получаем список ссылок для загрузки
 		$arr_link=$this->getLinkArray($host_setting['handler']?:[], $page->getData());
 
@@ -86,7 +87,7 @@ class Graber {
 			}
 
 			# Загружаем файл
-			$file_data=$this->uploadFile($link, $host_setting['file']?:[]);
+			$file_data=$this->uploadFile($link, $host_setting['file']['curl_set']?:[]);
 
 			$basename=basename($file_data->getFileName());
 
